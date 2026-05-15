@@ -70,7 +70,7 @@ const ListTasks = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] p-6 font-sans">
+    <div className="min-h-screen bg-[#FDFDFD] p-6 font-sans antialiased">
       <div className="max-w-2xl mx-auto bg-white rounded-4xl shadow-lg p-8 border border-neutral-100">
 
         <h1 className="text-3xl font-black text-black mb-8 text-center uppercase">
@@ -120,15 +120,21 @@ const ListTasks = () => {
                     onChange={() => toggleComplete(task.id)}
                     className="w-5 h-5 accent-black cursor-pointer"
                   />
-                  <span
-                    className={`font-semibold text-lg ${
-                      task.completed
-                        ? "line-through text-neutral-400"
-                        : "text-black"
-                    }`}
-                  >
-                    {task.text}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`font-semibold text-lg ${
+                        task.completed
+                          ? "line-through text-neutral-400"
+                          : "text-black"
+                      }`}
+                    >
+                      {task.text}
+                    </span>
+
+                    <span className="text-[11px] font-black uppercase px-2 py-1 rounded-full bg-neutral-100 text-neutral-700">
+                      {task.category ?? "TASK"}
+                    </span>
+                  </div>
                 </div>
 
                 <button

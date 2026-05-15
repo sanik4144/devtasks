@@ -4,6 +4,7 @@ import { toast } from "sonner";
 
 const AddTasks = () => {
   const [task, setTask] = useState("");
+  const [category, setCategory] = useState("FEATURE");
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -21,6 +22,7 @@ const AddTasks = () => {
     const newTask = {
       id: Date.now(),
       text: task,
+      category,
       completed: false,
     };
 
@@ -34,7 +36,7 @@ const AddTasks = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center p-6 selection:bg-black selection:text-white font-sans">
+    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center p-6 selection:bg-black selection:text-white font-sans antialiased">
       <div className="w-full max-w-[480px] bg-white rounded-5xl p-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.06)] border border-neutral-100 flex flex-col items-center text-center relative overflow-hidden">
         {/* Top Accent */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-black"></div>
@@ -83,6 +85,29 @@ const AddTasks = () => {
               className="w-full bg-neutral-50 border-2 border-transparent rounded-4xl px-8 py-5 text-black placeholder:text-neutral-300 focus:bg-white focus:border-black transition-all duration-300 outline-none font-semibold text-lg shadow-sm"
               autoFocus
             />
+          </div>
+
+          <div className="text-left">
+            <label className="block text-[11px] font-black text-neutral-400 uppercase tracking-[0.25em] mb-3 ml-6">
+              Category
+            </label>
+
+            <div className="flex items-center gap-3 ml-6">
+              {["FEATURE", "BUG", "REFACTOR"].map((opt) => (
+                <button
+                  type="button"
+                  key={opt}
+                  onClick={() => setCategory(opt)}
+                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer border ${
+                    category === opt
+                      ? "bg-black text-white"
+                      : "bg-neutral-100 text-neutral-600 border-transparent hover:bg-neutral-200"
+                  }`}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
           </div>
 
           <button
