@@ -1,33 +1,111 @@
 # DevTasks ✅
 
-A simple beginner-friendly task tracker built with React + Tailwind CSS.
+[![React 19](https://img.shields.io/badge/React-19.2.5-black?style=flat-square&logo=react)](https://react.dev)
+[![Tailwind v4](https://img.shields.io/badge/Tailwind-v4.2.4-black?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
+[![Vite 6](https://img.shields.io/badge/Vite-v6.0.1-black?style=flat-square&logo=vite)](https://vite.dev)
+[![GitHub Stars](https://img.shields.io/github/stars/shamilahmdt/devtasks?style=flat-square&logo=github&color=black)](https://github.com/shamilahmdt/devtasks/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-black?style=flat-square)](LICENSE)
 
-## 🚀 Features
-- Add tasks
-- Mark as completed
-- Delete tasks
+A high-performance, minimalist task manager designed for developer roadmaps. DevTasks provides a premium, clean monochrome environment with fluid micro-animations, theme toggles, and state persistence to keep your engineering flow uninterrupted.
+
+---
+
+## ✨ Features
+
+* ⚡ **Ultra-Fast Performance**: Built on React 19 and Vite 6 for instant reactivity and hot reloading.
+* 🌓 **Dynamic Themes**: Seamless transitions between premium white and deep zinc dark modes.
+* 🗂 **Categorized Engineering Tasks**: Group tasks by `FEATURE`, `BUG`, or `REFACTOR` with custom priority weights (`HIGH`, `MEDIUM`, `LOW`).
+* 📊 **Roadmap Analytics**: Live visual progress indicators tracking your overall task completion percentage.
+* 📜 **System Logs & History**: Dedicated recovery panel to audit and restore deleted tasks back into your roadmap.
+* 📦 **Robust Persistence**: State stays persistent across browser reloads using LocalStorage.
+* 🔔 **Polished Toasts**: Custom, stylized notifications powered by `sonner` matching the application's clean design.
+
+---
 
 ## 🛠️ Tech Stack
-- React
-- Tailwind CSS
 
-## 📦 Installation
+* **Core**: [React 19](https://react.dev)
+* **Styling**: [Tailwind CSS v4](https://tailwindcss.com) (utility-first, pure custom tokens)
+* **Bundler & Dev Server**: [Vite 6](https://vite.dev)
+* **Routing**: [React Router v7](https://reactrouter.com)
+* **Notifications**: [Sonner](https://emilkowalski.github.io/sonner/)
+* **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
+
+---
+
+## 📦 Installation & Quick Start
+
+Get your local development environment running in under 2 minutes:
+
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/devtasks.git
+git clone https://github.com/shamilahmdt/devtasks.git
 cd devtasks
+```
+
+### 2. Install Dependencies
+```bash
 npm install
+```
+
+### 3. Start the Development Server
+```bash
 npm run dev
 ```
+Open your browser and navigate to `http://localhost:5173`.
+
+---
 
 ## 🤝 Contributing
 
-We welcome contributions!
+We love open-source contributions! Whether you're a seasoned developer or looking to make your very first PR, you are welcome here.
 
-1. Fork the repo
-2. Create a new branch
-3. Make your changes
-4. Submit a Pull Request
+⭐ **Support the Project**: If you find DevTasks helpful or are planning to contribute, please consider **giving us a star**! It helps others discover the project and shows your appreciation for our maintainers.
 
-## 📌 Beginner Issues
+### 🌿 Contribution Pipeline
+1. **Fork** the repository and clone your fork locally.
+2. **Create a branch** for your feature:
+   ```bash
+   git checkout -b feat/your-awesome-feature
+   ```
+3. **Commit your changes** using clean, descriptive commit messages.
+4. **Push to your fork** and submit a **Pull Request** targeting our `main` branch.
 
-Check the Issues tab for beginner-friendly tasks.
+---
+
+## 💬 Discussions & Community
+
+Got a feature idea, an architectural suggestion, or just want to chat about the roadmap?
+* **Join the Conversations**: Head over to our **[GitHub Discussions](https://github.com/shamilahmdt/devtasks/discussions)** page.
+* **Pitch New Features**: We love exploring new concepts! Start a discussion thread to discuss layout designs, icons, or state structures before writing code.
+
+---
+
+## 🎯 Active Beginner Issues
+
+Ready to write some code? We actively maintain highly descriptive templates for first-time contributors. Look out for the `good first issue` and `help wanted` labels inside our **[GitHub Issues](https://github.com/shamilahmdt/devtasks/issues)** tracker!
+
+### 💡 Featured Roadmap Tasks
+Here are a few exciting features currently open for implementation:
+
+* 🟢 **Task Due Dates & Deadline Badges** ([Issue Template](file:///C:/Users/ASUS/.gemini/antigravity/brain/067a5bcb-1307-40d6-8cc4-047f9fcfafb3/github_issue_task_due_dates.md))
+  * *Goal*: Add a date picker when adding tasks and show `Due Today` / `Overdue` alerts inside the task list.
+  * *Skills*: Date calculations, conditional rendering.
+
+* 🟢 **Dedicated Import & Export Data Center** ([Issue Template](file:///C:/Users/ASUS/.gemini/antigravity/brain/067a5bcb-1307-40d6-8cc4-047f9fcfafb3/github_issue_import_export.md))
+  * *Goal*: Create a dedicated page for backup data transfer, dynamically sorting active, completed, and deleted logs into correct state targets.
+  * *Skills*: LocalStorage JSON parsing, routing, validation toasts.
+
+* 🟢 **Filter Counters & Bulk Clear Action** ([Issue Template](file:///C:/Users/ASUS/.gemini/antigravity/brain/067a5bcb-1307-40d6-8cc4-047f9fcfafb3/github_issue_task_counters.md))
+  * *Goal*: Render total active and completed task counts inside the filter buttons, and implement a "Clear Completed" trigger button to bulk archive tasks in one click.
+  * *Skills*: Array lengths, array state manipulation.
+
+* 🟢 **"Undo Delete" Interactive Toast Action** ([Issue Template](file:///C:/Users/ASUS/.gemini/antigravity/brain/067a5bcb-1307-40d6-8cc4-047f9fcfafb3/github_issue_undo_delete.md))
+  * *Goal*: Add a functional "Undo" action trigger directly inside the task deletion toast notification using Sonner's API.
+  * *Skills*: State rollback, interactive notification components.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
