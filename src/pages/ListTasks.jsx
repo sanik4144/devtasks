@@ -57,6 +57,27 @@ const ListTasks = () => {
     if (e.key === "Escape") setEditingId(null);
   };
 
+  const restoreDeletedTask = (taskToRestore) => {
+    let deletedTasks = localStorage.getItem("deleted_tasks");
+    if (deletedTasks) {
+      deletedTasks = JSON.parse(deletedTasks).filter(
+        (t) => t.id !== taskToRestore.id
+      );
+      localStorage.setItem("deleted_tasks", JSON.stringify(deletedTasks));
+    }
+
+    setTasks((prevTasks) => {
+      if (prevTasks.some((t) => t.id === taskToRestore.id)) return prevTasks;
+      const updatedTasks = [...prevTasks, taskToRestore];
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      return updatedTasks;
+    });
+
+    toast.success("Action undone.", {
+      style: { background: "#000000", color: "#ffffff" },
+    });
+  };
+
   const deleteTask = (id) => {
     let deletedTasks = localStorage.getItem("deleted_tasks");
 
@@ -80,6 +101,10 @@ const ListTasks = () => {
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     toast.warning("Task permanently removed.", {
       style: { background: "#000000", color: "#ffffff" },
+      action: {
+        label: "Undo",
+        onClick: () => restoreDeletedTask(deletedTask),
+      },
     });
   };
 
