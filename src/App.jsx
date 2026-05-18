@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import AddTasks from "./pages/AddTasks";
 import ListTasks from "./pages/ListTasks";
 import DeleteHistory from "./pages/DeleteHistory";
+import DataCenter from "./pages/DataCenter";
 import { ThemeProvider } from "./context/ThemeContext";
 import "./index.css";
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/add-tasks" element={<AddTasks />} />
           <Route path="/list-tasks" element={<ListTasks />} />
           <Route path="/delete-history" element={<DeleteHistory />} />
+          <Route path="/data-center" element={<DataCenter />} />
         </Routes>
       </Router>
     </ThemeProvider>
