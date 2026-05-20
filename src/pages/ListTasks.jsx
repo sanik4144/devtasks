@@ -2,12 +2,14 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { useCategory } from "../context/CategoryContext";
 import ThemeToggle from "../components/ThemeToggle";
 
 const FILTERS = ["ALL", "ACTIVE", "COMPLETED"];
 
 const ListTasks = () => {
   const { dark } = useTheme();
+  const { categories } = useCategory();
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -18,6 +20,7 @@ const ListTasks = () => {
 
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState("");
+  const [activeDropdownId, setActiveDropdownId] = useState(null);
 
   const filteredTasks = tasks.filter((task) => {
     const matchFilter=
@@ -80,24 +83,17 @@ const ListTasks = () => {
 
   const deleteTask = (id) => {
     let deletedTasks = localStorage.getItem("deleted_tasks");
-
     if (deletedTasks == null) deletedTasks = [];
     else deletedTasks = JSON.parse(deletedTasks);
-
     const deletedTask = tasks.filter((task) => task.id === id)[0];
-
     const taskWithTimestamp = {
       ...deletedTask,
       deletedAt: new Date().toISOString(),
     };
-
     deletedTasks.push(taskWithTimestamp);
-
     localStorage.setItem("deleted_tasks", JSON.stringify(deletedTasks));
-
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
-
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     toast.warning("Task permanently removed.", {
       style: { background: "#000000", color: "#ffffff" },
@@ -110,11 +106,10 @@ const ListTasks = () => {
 
   const toggleComplete = (id) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task,
+      task.id === id ? { ...task, completed: !task.completed } : task
     );
     setTasks(updatedTasks);
     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
     const task = tasks.find((task) => task.id === id);
     if (task.completed) {
       toast.info("Task re-opened.", {
@@ -125,6 +120,18 @@ const ListTasks = () => {
         style: { background: "#000000", color: "#ffffff" },
       });
     }
+  };
+
+  const updateCategory = (taskId, newCategory) => {
+    const updatedTasks = tasks.map((t) =>
+      t.id === taskId ? { ...t, category: newCategory } : t
+    );
+    setTasks(updatedTasks);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setActiveDropdownId(null);
+    toast.success("Category updated successfully.", {
+      style: { background: "#000000", color: "#ffffff" },
+    });
   };
 
   return (
@@ -223,9 +230,42 @@ const ListTasks = () => {
                         >
                           {task.text}
                         </span>
-                        <span className={`text-[11px] font-black uppercase px-2 py-1 rounded-full ${dark ? "bg-zinc-700 text-neutral-300" : "bg-neutral-100 text-neutral-700"}`}>
-                          {task.category ?? "TASK"}
-                        </span>
+                        <div className="relative">
+  <button
+    type="button"
+    onClick={() =>
+      setActiveDropdownId(
+        activeDropdownId === task.id ? null : task.id
+      )
+    }
+    className={`text-[11px] font-black uppercase px-2 py-1 rounded-full cursor-pointer transition-all duration-200 ${
+      dark
+        ? "bg-zinc-700 text-neutral-300 hover:bg-zinc-600"
+        : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
+    }`}
+  >
+    {task.category ?? "TASK"}
+  </button>
+
+  {activeDropdownId === task.id && (
+    <div className={`absolute top-7 left-0 z-10 rounded-xl shadow-lg border p-2 flex flex-col gap-1 min-w-[120px] ${dark ? "bg-zinc-800 border-zinc-700" : "bg-white border-neutral-200"}`}>
+      {categories.map((cat) => (
+        <button
+          key={cat}
+          type="button"
+          onClick={() => updateCategory(task.id, cat)}
+          className={`text-[11px] font-black uppercase px-2 py-1 rounded-lg text-left transition-all duration-200 ${
+            task.category === cat
+              ? dark ? "bg-white text-black" : "bg-black text-white"
+              : dark ? "text-neutral-300 hover:bg-zinc-700" : "text-neutral-700 hover:bg-neutral-100"
+          }`}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+  )}
+</div>
 
                         {task.priority && (
                           <span

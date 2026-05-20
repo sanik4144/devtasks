@@ -2,13 +2,17 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { useTheme } from "../context/ThemeContext";
+import { useCategory } from "../context/CategoryContext";
 import ThemeToggle from "../components/ThemeToggle";
 
 const AddTasks = () => {
   const { dark } = useTheme();
+  const { categories, addCategory, deleteCategory } = useCategory();
   const [task, setTask] = useState("");
   const [category, setCategory] = useState("FEATURE");
   const [priority, setPriority] = useState("MEDIUM");
+  const [newCategoryInput, setNewCategoryInput] = useState("");
+const [showInput, setShowInput] = useState(false);
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
@@ -20,9 +24,7 @@ const AddTasks = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!task.trim()) return;
-
     const newTask = {
       id: Date.now(),
       text: task,
@@ -30,15 +32,37 @@ const AddTasks = () => {
       priority,
       completed: false,
     };
-
     setTasks([...tasks, newTask]);
-
     toast.success("Task successfully added to roadmap.", {
       style: { background: "#000000", color: "#ffffff" },
     });
-
     setTask("");
     setPriority("MEDIUM");
+  };
+
+  const handleAddCategory = () => {
+    if (!newCategoryInput.trim()) return;
+    addCategory(newCategoryInput);
+    setCategory(newCategoryInput.trim().toUpperCase());
+    setNewCategoryInput("");
+    setShowInput(false);
+    toast.success("Category added.", {
+      style: { background: "#000000", color: "#ffffff" },
+    });
+  };
+
+  const handleDeleteCategory = (cat) => {
+    const success = deleteCategory(cat, tasks);
+    if (!success) {
+      toast.error("Cannot delete — category is in use by a task.", {
+        style: { background: "#000000", color: "#ffffff" },
+      });
+    } else {
+      if (category === cat) setCategory(categories[0]);
+      toast.success("Category removed.", {
+        style: { background: "#000000", color: "#ffffff" },
+      });
+    }
   };
 
   return (
@@ -49,10 +73,7 @@ const AddTasks = () => {
       <meta name="keywords" content="addtasks, add tasks, add lists, devtasks, dev tasks todo, create roadmap, bug tracker" />
 
       <div className={`w-full max-w-[480px] rounded-5xl p-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.06)] border flex flex-col items-center text-center relative overflow-hidden transition-colors duration-300 ${dark ? "bg-zinc-900 border-zinc-700" : "bg-white border-neutral-100"}`}>
-        {/* Top Accent */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-black dark:bg-white" />
-
-        {/* Theme Toggle */}
         <div className="absolute top-6 right-6">
           <ThemeToggle />
         </div>
@@ -74,7 +95,6 @@ const AddTasks = () => {
             >
               Task Description
             </label>
-
             <input
               id="task-input"
               type="text"
@@ -90,24 +110,72 @@ const AddTasks = () => {
             <label className="block text-[11px] font-black text-neutral-400 uppercase tracking-[0.25em] mb-3 ml-6">
               Category
             </label>
+            <div className="flex flex-wrap items-center gap-3 ml-6">
+              {categories.map((opt) => (
+                <div key={opt} className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setCategory(opt)}
+                    className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer border ${
+                      category === opt
+                        ? "bg-black text-white border-black"
+                        : dark
+                        ? "bg-zinc-700 text-neutral-300 border-transparent hover:bg-zinc-600"
+                        : "bg-neutral-100 text-neutral-600 border-transparent hover:bg-neutral-200"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteCategory(opt)}
+                    className="text-neutral-400 hover:text-red-500 text-sm font-black transition-colors duration-200"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
 
-            <div className="flex items-center gap-3 ml-6">
-              {["FEATURE", "BUG", "REFACTOR"].map((opt) => (
+              {showInput ? (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={newCategoryInput}
+                    onChange={(e) => setNewCategoryInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleAddCategory();
+                      }
+                    }}
+                    placeholder="NEW..."
+                    autoFocus
+                    className={`w-24 px-2 py-1 rounded-full text-xs font-black uppercase tracking-widest border-2 outline-none transition-all duration-200 ${dark ? "bg-zinc-800 text-white border-zinc-600 focus:border-white" : "bg-neutral-50 text-black border-neutral-300 focus:border-black"}`}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddCategory}
+                    className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest border transition-all duration-200 ${dark ? "bg-white text-black" : "bg-black text-white"}`}
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowInput(false)}
+                    className="text-neutral-400 hover:text-red-500 text-sm font-black"
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
                 <button
                   type="button"
-                  key={opt}
-                  onClick={() => setCategory(opt)}
-                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-200 cursor-pointer border ${
-                    category === opt
-                      ? "bg-black text-white border-black"
-                      : dark
-                      ? "bg-zinc-700 text-neutral-300 border-transparent hover:bg-zinc-600"
-                      : "bg-neutral-100 text-neutral-600 border-transparent hover:bg-neutral-200"
-                  }`}
+                  onClick={() => setShowInput(true)}
+                  className={`px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest border-2 border-dashed transition-all duration-200 ${dark ? "border-zinc-600 text-zinc-400 hover:border-white hover:text-white" : "border-neutral-300 text-neutral-400 hover:border-black hover:text-black"}`}
                 >
-                  {opt}
+                  + Add
                 </button>
-              ))}
+              )}
             </div>
           </div>
 
@@ -142,7 +210,6 @@ const AddTasks = () => {
             className={`group w-full font-black py-6 rounded-4xl shadow-2xl active:scale-[0.98] transition-all duration-500 flex items-center justify-center space-x-4 text-xl tracking-wide ${dark ? "bg-white text-black hover:bg-gray-100 shadow-white/20" : "bg-black text-white hover:bg-neutral-800 shadow-black/40"}`}
           >
             <span>CREATE TASK</span>
-
             <div className="bg-white/20 p-2 rounded-full group-hover:translate-x-1 transition-transform duration-300">
               <svg
                 className={`w-6 h-6 ${dark ? "text-black" : "text-white"}`}
@@ -165,7 +232,6 @@ const AddTasks = () => {
         </Link>
       </div>
 
-      {/* Decorative Blur Elements */}
       <div className={`fixed top-[-10%] right-[-10%] w-[40vw] h-[40vw] rounded-full blur-[120px] -z-10 opacity-60 ${dark ? "bg-zinc-800" : "bg-neutral-100"}`} />
       <div className={`fixed bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] rounded-full blur-[120px] -z-10 opacity-60 ${dark ? "bg-zinc-900" : "bg-neutral-50"}`} />
     </div>
