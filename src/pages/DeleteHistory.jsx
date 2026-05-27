@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
-import { useTheme } from "../context/ThemeContext";
-import ThemeToggle from "../components/ThemeToggle";
-
+import { useTheme } from '../context/ThemeContext';
+import ThemeToggle from '../components/ThemeToggle';
+import { useNavigate } from "react-router-dom";
 const DeleteHistory = () => {
+  const navigate = useNavigate();
   const { dark } = useTheme();
   const [deletedTasks, setDeletedTasks] = useState(() => {
     const stored = localStorage.getItem("deleted_tasks");
@@ -19,28 +20,60 @@ const DeleteHistory = () => {
     return [];
   });
 
-  const handleWipeOut = () => {
-    localStorage.removeItem("deleted_tasks");
-    toast.success("All data wiped successfully.");
-    setDeletedTasks([]);
-  };
+ const handleWipeOut = () => {
+  toast("Are you sure you want to delete all history?", {
+    description: "This action cannot be undone.",
+    action: {
+      label: "Yes, Delete",
+      onClick: () => {
+        localStorage.removeItem('deleted_tasks');
+        setDeletedTasks([]);
+        toast.success("All data wiped successfully.");
+      },
+    },
+    cancel: {
+      label: "Cancel",
+      onClick: () => {
+        toast("Deletion cancelled");
+      },
+    },
+  });
+};
 
-  const restoreTask = (id) => {
-    const deleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
-    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const restoreTask = (id) => {
+  const deleted = JSON.parse(localStorage.getItem("deleted_tasks")) || [];
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-    const taskToRestore = deleted.find((task) => task.id === id);
-    if (!taskToRestore) return;
+  const taskToRestore = deleted.find((task) => task.id === id);
+  if (!taskToRestore) return;
 
-    const updatedDeletedTasks = deleted.filter((task) => task.id !== id);
-    const updatedTasks = [...tasks, taskToRestore];
+  const updatedDeletedTasks = deleted.filter((task) => task.id !== id);
+  const updatedTasks = [...tasks, taskToRestore];
 
-    localStorage.setItem("deleted_tasks", JSON.stringify(updatedDeletedTasks));
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  localStorage.setItem("deleted_tasks", JSON.stringify(updatedDeletedTasks));
+  localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  setDeletedTasks(updatedDeletedTasks);
 
-    setDeletedTasks(updatedDeletedTasks);
-    toast.success("Task restored to roadmap.");
-  };
+  // 🔥 Toast with navigation + undo
+  toast("Task restored", {
+    description: "Moved back to roadmap",
+    action: {
+      label: "View Tasks",
+      onClick: () => navigate("/list-tasks"),
+    },
+    cancel: {
+      label: "Undo",
+      onClick: () => {
+        localStorage.setItem(
+          "deleted_tasks",
+          JSON.stringify([...updatedDeletedTasks, taskToRestore])
+        );
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        setDeletedTasks([...updatedDeletedTasks, taskToRestore]);
+      },
+    },
+  });
+};
 
   const handleExport = () => {
     const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
@@ -89,6 +122,40 @@ const DeleteHistory = () => {
             JSON.stringify([...existingDeleted, ...deleted])
           );
           setDeletedTasks([...existingDeleted, ...deleted]);
+ /* const handleExport=()=>{
+    const tasks=JSON.parse(localStorage.getItem("tasks") || "[]");
+    const deletedTasks=JSON.parse(localStorage.getItem("deleted_tasks") || "[]");
+    let exportData=[...tasks,...deletedTasks];
+    exportData=JSON.stringify(exportData,null,2);
+    const blob=new Blob([exportData],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    a.download="devtasks-backup.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  }*/
+
+  /*const handleImport=()=>{
+    const input=document.createElement("input");
+    input.type="file";
+    input.accept=".json";
+    input.onchange=async (e)=>{
+      const file=e.target.files[0];
+      if(!file) return;
+      
+      try{
+        const text=await file.text();
+        const data=JSON.parse(text);
+        if(Array.isArray(data)){
+          const tasks=data.filter(item=>item.text && item.id && !item.deletedAt);
+          const deleted=data.filter(item=>item.text && item.id && item.deletedAt);
+          const existingTasks=JSON.parse(localStorage.getItem("tasks")) || [];
+          const existingDeleted=JSON.parse(localStorage.getItem("deleted_tasks")) || [];
+
+          localStorage.setItem("tasks",JSON.stringify([...existingTasks,...tasks]));
+          localStorage.setItem("deleted_tasks",JSON.stringify([...existingDeleted,...deleted]));
+          setDeletedTasks([...existingDeleted,...deleted]);
           toast.success("Data imported successfully");
         } else {
           toast.error("Invalid file structure");
@@ -100,6 +167,8 @@ const DeleteHistory = () => {
     };
     input.click();
   };
+  }*/
+  
 
   return (
     <div
@@ -278,6 +347,22 @@ const DeleteHistory = () => {
                   Export Backup
                 </button>
               </div>
+              <Link
+                to="/data-center"
+                className={`flex items-center justify-between px-5 py-4 rounded-2xl border transition-all duration-300 ${
+                  dark
+                    ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800 text-gray-300"
+                    : "border-gray-200 bg-gray-50 hover:bg-gray-100 text-gray-700"
+                }`}
+              >
+                <span className="text-xs font-black uppercase tracking-widest">
+                  Go to Data Center for backups 
+                </span>
+              
+                <span className="text-lg">→</span>
+              
+              </Link>  
+
             </div>
           </div>
         </div>
