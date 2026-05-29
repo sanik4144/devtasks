@@ -88,30 +88,34 @@ Ready to write some code? We actively maintain highly descriptive templates for 
 ### 💡 Featured Roadmap Tasks
 Here are the current active issues open for implementation on our repository:
 
-* 🟢 **Interactive Toast Actions & Route Navigation** ([#87](https://github.com/shamilahmdt/devtasks/issues/87))
-  * *Goal*: Add interactive action links inside toast notifications (e.g., direct navigation shortcut back to list or dashboard page) and configure smooth transitions.
-  * *Skills*: Toast configuration, navigation APIs, user flow orchestration.
+* 🟢 **[UI/Design] Style Symmetrical Backup Center in DataCenter.jsx** ([#109](https://github.com/shamilahmdt/devtasks/issues/109))
+  * *Goal*: Revamp the unstyled import/export panel at `src/pages/SnippetVault/snippetvault/DataCenter.jsx` into a premium, symmetrical grid layout using Tailwind CSS. Unify it with the application's clean light/dark monochrome styling (incorporating custom ambient glows, borders, and transitions), add polished upload/download buttons, and implement fully responsive card containers.
+  * *Skills*: React state usage, Tailwind CSS v4, custom theme styling, mobile-first responsive design.
 
-* 🟢 **Improve Keyboard Shortcuts & HUD Browser Compatibility** ([#78](https://github.com/shamilahmdt/devtasks/issues/78))
-  * *Goal*: Refactor the keyboard shortcut listener system to resolve compatibility bugs where some keys do not fire correctly on certain OS/browser combinations (such as `Alt` key menu activation in Windows Chrome), and optimize text input focus filtering.
-  * *Skills*: Global window event listeners, preventDefault handling, cross-platform key mapping.
+* 🟢 **[UI/Design] Style Deletion Logs & History Panel in DeleteHistory.jsx** ([#108](https://github.com/shamilahmdt/devtasks/issues/108))
+  * *Goal*: Refactor `src/pages/SnippetVault/snippetvault/DeleteHistory.jsx` from basic unstyled HTML lists into a high-fidelity engineering log viewer. Design elegant list elements featuring clean hover animations, low-contrast monospaced layout elements, clear status badges, distinct muted colors for destructive actions, and full light/dark mode responsive support.
+  * *Skills*: UI/UX alignment, responsive list components, micro-animations, standard color palettes.
 
-* 🟢 **Improve Mobile Responsiveness Across Core Pages** ([#76](https://github.com/shamilahmdt/devtasks/issues/76))
-  * *Goal*: Optimize layouts for mobile displays ensuring dashboard cards, task list items, and system logs adapt gracefully to small screen sizes.
-  * *Skills*: Responsive design, Tailwind CSS breakpoints, mobile UX.
+* 🟢 **[UI/Design] Style Interactive Snippet Registry for ListSnippets.jsx** ([#107](https://github.com/shamilahmdt/devtasks/issues/107))
+  * *Goal*: Elevate `src/pages/SnippetVault/snippetvault/ListSnippets.jsx` from a bare list into a premium developer registry panel. Implement custom interactive snippet card layouts, category badge tag selectors, a custom-focused search bar with sleek monochrome borders, and clipboard copy action buttons with immediate success notification states.
+  * *Skills*: Tailwind CSS spacing & transitions, micro-interactions, input hover states, search filtering UI design.
 
-* 🟢 **Improve Dark Mode Consistency & Consolidate Backup Actions** ([#61](https://github.com/shamilahmdt/devtasks/issues/61))
-  * *Goal*: Unify zinc color schemes for perfect dark/light contrast on all components, and consolidate backup actions under a consistent interface.
-  * *Skills*: Theme switching, custom design consistency, standard layout rules.
+* 🟢 **[UI/Design] Implement Premium Form Layout for AddSnippet.jsx** ([#106](https://github.com/shamilahmdt/devtasks/issues/106))
+  * *Goal*: Redesign the standard inputs in `src/pages/SnippetVault/snippetvault/AddSnippet.jsx` to build a sleek, minimalist card-based creation form. Add custom styled text inputs and textareas with active focus borders, a custom-designed selection menu, and a premium primary submit button with elegant micro-transitions.
+  * *Skills*: Custom form control layouts, state-driven interaction design, modern typography integration.
 
 ---
 
 ## 🚀 Future Architectural Vision (Next Milestones)
 
-We are planning a major milestone refactoring of DevTasks to significantly boost developer workflow speed:
+DevTasks is rapidly evolving to boost developer workflow speed. Here is our current progress and the next architectural milestones on our radar:
 
-* 🎛️ **The Unified Dev Board & Workspace**: Consolidate `AddTasks`, `ListTasks`, `DeleteHistory`, and `DataCenter` into a single, high-efficiency split-pane dashboard workspace (`/workspace`). This eliminates redundant view-switching and lets developers create, filter, purge, and backup tasks in one cohesive command center.
-* 📦 **Minimalist Snippet Vault**: Introduce a companion dashboard (`/snippets`) for engineers to store, search, and instantly copy reusable terminal commands and code blocks with smooth, micro-animated clipboard actions.
+* 📦 **Minimalist Snippet Vault (`/snippetvault`)** — *[IN PROGRESS]* 🏗️
+  * We have successfully initiated the companion dashboard at `/snippetvault`! The core structure is scaffolded with sub-pages for snippet creation, list filtering, deleted history log auditing, and JSON import/export backup. The next focus is implementing premium Tailwind CSS styling, interactive copy feedback, and persistent local storage synchronization.
+* 🎛️ **The Unified Dev Workspace (`/workspace`)** — *[PLANNED]* 🗺️
+  * Consolidate the entire workspace—combining `TaskManagement` and the new `SnippetVault`—into a unified, high-efficiency split-pane dashboard. This will eliminate redundant view-switching, allowing developers to manage engineering roadmaps on the left and instantly copy command templates on the right from one cohesive workspace.
+* ⌨️ **Command Palette & Keyboard-First Navigation** — *[PROPOSED]* ⚡
+  * Expand the global HUD system into a fully featured interactive Command Palette (e.g., `Cmd+K` or `Ctrl+P`). This will allow developers to trigger actions like creating tasks, copying snippets, searching records, or switching themes globally without leaving the keyboard.
 
 ---
 
