@@ -83,7 +83,7 @@ Snippet Registry </h1>
       <ThemeToggle />
     </div>
 
-    {/* Search */}
+    {/* Search */} 
     <input
       type="text"
       placeholder="Search snippets..."
