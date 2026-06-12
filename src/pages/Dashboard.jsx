@@ -101,8 +101,18 @@ const Dashboard = () => {
         content="Integrated engineering cockpit for managing developer roadmap task boards and snippet code registries."
       />
 
-      <div className="w-[85%] max-w-none mx-auto flex flex-col grow justify-between">
-        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col grow justify-between">
+        <header className="shrink-0 mb-12 flex flex-col gap-4">
+          <Link
+            to="/"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Exit to Site</span>
+          </Link>
           <div>
             <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
               Dashboard
@@ -110,15 +120,6 @@ const Dashboard = () => {
             <p className="text-gray-400 font-medium">
               Manage your engineering command center
             </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/"
-              className="text-xs font-bold uppercase tracking-widest hover:underline pb-1"
-            >
-              Exit to Site
-            </Link>
           </div>
         </header>
 

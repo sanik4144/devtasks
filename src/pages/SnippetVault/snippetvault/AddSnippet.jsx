@@ -203,7 +203,7 @@ const AddSnippet = () => {
 
   return (
     <div
-      className={`min-h-screen px-4 sm:px-6 py-8 flex items-center justify-center transition-colors duration-300 overflow-hidden relative ${
+      className={`min-h-screen px-4 sm:px-6 py-8 flex items-center justify-center transition-colors duration-300 overflow-y-auto md:overflow-hidden relative ${
         dark ? "bg-zinc-950" : "bg-[#F7F7F7]"
       }`}
     >
@@ -227,7 +227,7 @@ const AddSnippet = () => {
 
       {/* GLASS CONTAINER */}
       <div
-        className={`relative z-10 w-[85%] max-w-none rounded-[32px] border shadow-2xl overflow-hidden transition-all duration-300 ${
+        className={`relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto rounded-[32px] border shadow-2xl overflow-hidden transition-all duration-300 ${
           dark ? "bg-zinc-900 border-zinc-800" : "bg-white border-neutral-200"
         }`}
       >
@@ -235,18 +235,30 @@ const AddSnippet = () => {
         <div className={`h-2 w-full transition-colors duration-500 ${dark ? "bg-white" : "bg-black"}`} />
 
         {/* Header */}
-        <div className="flex items-start justify-between px-6 sm:px-10 pt-8 sm:pt-10 gap-4">
-          <div>
-            <h1
-              className={`text-2xl sm:text-3xl font-black uppercase tracking-tight transition-colors duration-300 ${
-                dark ? "text-white" : "text-black"
-              }`}
-            >
-              { isEdit ? "Edit Snippet" : "Add New Snippet" }
-            </h1>
-            <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-              Store a new template block in your developer vault
-            </p>
+        <div className="flex flex-col gap-4 px-6 sm:px-10 pt-8 sm:pt-10">
+          <Link
+            to="/snippetvault"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1
+                className={`text-2xl sm:text-3xl font-black uppercase tracking-tight transition-colors duration-300 ${
+                  dark ? "text-white" : "text-black"
+                }`}
+              >
+                { isEdit ? "Edit Snippet" : "Add New Snippet" }
+              </h1>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
+                Store a new template block in your developer vault
+              </p>
+            </div>
           </div>
         </div>
 
@@ -507,18 +519,7 @@ const AddSnippet = () => {
         </div>
 
         {/* Back Navigation Bar */}
-        <div className="px-6 sm:px-10 pb-8 flex justify-between items-center border-t border-neutral-100 dark:border-zinc-800 pt-6">
-          <Link
-            to="/snippetvault"
-            className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-              dark
-                ? "text-neutral-400 hover:text-white"
-                : "text-neutral-500 hover:text-black"
-            }`}
-          >
-            <span>←</span>
-            <span>Back to Workspace</span>
-          </Link>
+        <div className="px-6 sm:px-10 pb-8 flex justify-end items-center border-t border-neutral-100 dark:border-zinc-800 pt-6">
           <span
             className={`text-[9px] font-bold uppercase tracking-widest ${
               dark ? "text-zinc-700" : "text-neutral-350"

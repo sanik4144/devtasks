@@ -108,7 +108,7 @@ const DeleteHistory = () => {
 
   return (
     <div
-      className={`min-h-screen md:h-screen w-full font-sans overflow-y-auto md:overflow-hidden flex flex-col p-4 md:p-8 transition-colors duration-300 ${
+      className={`min-h-[calc(100vh-76px)] md:h-[calc(100vh-76px)] w-full font-sans overflow-y-auto md:overflow-hidden flex flex-col p-4 md:p-8 transition-colors duration-300 ${
         dark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -118,24 +118,27 @@ const DeleteHistory = () => {
         content="View deleted snippets history, restore snippets, or permanently clear logs."
       />
 
-      <div className="max-w-6xl w-full mx-auto flex flex-col h-full">
-        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div className="animate-in fade-in slide-in-from-left duration-700">
-            <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
-              Snippet Logs
-            </h1>
-            <p className="text-gray-400 font-medium">
-              Restore deleted snippets or purge records permanently
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/snippetvault"
-              className="text-xs font-bold uppercase tracking-widest hover:underline pb-1 flex items-center"
-            >
-              <span className="mr-2">←</span> Back to Workspace
-            </Link>
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col h-full">
+        <header className="shrink-0 mb-12 flex flex-col gap-4">
+          <Link
+            to="/snippetvault"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
+            <div className="animate-in fade-in slide-in-from-left duration-700">
+              <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
+                Snippet Logs
+              </h1>
+              <p className="text-gray-400 font-medium">
+                Restore deleted snippets or purge records permanently
+              </p>
+            </div>
           </div>
         </header>
 

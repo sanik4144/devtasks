@@ -69,7 +69,7 @@ const DataCenter = () => {
 
       {/* MAIN GLASS CARD */}
       <div
-        className={`relative z-10 w-[85%] max-w-none mx-auto rounded-[32px] border shadow-xl flex flex-col max-h-full overflow-hidden transition-all duration-300 ${
+        className={`relative z-10 w-full max-w-4xl mx-4 sm:mx-6 md:mx-auto rounded-[32px] border shadow-xl flex flex-col max-h-full overflow-hidden transition-all duration-300 ${
           dark
             ? "bg-zinc-900/80 border-zinc-800"
             : "bg-white/80 border-neutral-200"
@@ -79,31 +79,18 @@ const DataCenter = () => {
         <div className={`h-2 w-full ${dark ? "bg-white" : "bg-black"}`} />
 
         {/* HEADER */}
-        <div className="px-5 sm:px-8 pt-6 sm:pt-8 flex items-start justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Link
-              to="/resourcehub"
-              className={`p-2.5 rounded-xl border transition-all duration-200 active:scale-95 flex items-center justify-center shrink-0 ${
-                dark
-                  ? "bg-zinc-800/80 border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-600"
-                  : "bg-white border-neutral-200 text-neutral-600 hover:text-black hover:border-neutral-350"
-              }`}
-              title="Back to Workspace"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </Link>
+        <div className="px-5 sm:px-8 pt-6 sm:pt-8 flex flex-col gap-4">
+          <Link
+            to="/resourcehub"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex items-start justify-between gap-4">
             <div>
               <h1
                 className={`text-xl sm:text-2xl font-black uppercase tracking-tight transition-colors duration-300 ${

@@ -71,33 +71,36 @@ const DevUtilities = () => {
         content="Quickly formatting, converting, validating, and checking regular expression statements."
       />
 
-      <div className="w-[85%] max-w-none mx-auto flex flex-col h-full">
-        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-          <div>
-            <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
-              Dev Utilities
-            </h1>
-            <p className="text-gray-400 font-medium mb-6">
-              Essential developer tools and offline code converters
-            </p>
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col h-full">
+        <header className="shrink-0 mb-12 flex flex-col gap-4">
+          <Link
+            to="/dashboard"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Dashboard</span>
+          </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 w-full">
+            <div>
+              <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
+                Dev Utilities
+              </h1>
+              <p className="text-gray-400 font-medium mb-6">
+                Essential developer tools and offline code converters
+              </p>
 
-            <div className="w-full max-w-sm">
-              <div className="text-xs font-black uppercase tracking-widest mb-2">
-                Utility Status: 4 Active Utilities
-              </div>
-              <div className="text-[10px] font-bold text-gray-500 uppercase truncate">
-                REGEXP • JSON • BASE64/URL • TIMESTAMP
+              <div className="w-full max-w-sm">
+                <div className="text-xs font-black uppercase tracking-widest mb-2">
+                  Utility Status: 4 Active Utilities
+                </div>
+                <div className="text-[10px] font-bold text-gray-500 uppercase truncate">
+                  REGEXP • JSON • BASE64/URL • TIMESTAMP
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/dashboard"
-              className="text-xs font-bold uppercase tracking-widest hover:underline pb-1"
-            >
-              Back to Dashboard
-            </Link>
           </div>
         </header>
 

@@ -283,7 +283,7 @@ function ListResources() {
 
   return (
     <div
-      className={`${t.wrapper} h-[calc(100vh-76px)] px-4 sm:px-6 py-6 transition-colors duration-300 overflow-hidden relative flex flex-col justify-center font-sans`}
+      className={`${t.wrapper} min-h-[calc(100vh-76px)] md:h-[calc(100vh-76px)] px-4 sm:px-6 py-6 transition-colors duration-300 overflow-y-auto md:overflow-hidden relative flex flex-col justify-center font-sans`}
     >
       <title>Curated Developer Resources & Guides | DevTasks</title>
       <meta name="description" content="Browse and manage local server listings, Figma designs, documentation hubs, and staging environments. Keep your workspace references in one place." />
@@ -302,32 +302,19 @@ function ListResources() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col max-h-full overflow-hidden gap-8">
         {/* Header */}
-        <header className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl flex items-center gap-3">
-            <Link
-              to="/resourcehub"
-              className={`p-2.5 rounded-xl border transition-all duration-200 active:scale-95 flex items-center justify-center shrink-0 ${
-                dark
-                  ? "bg-zinc-800/80 border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-600"
-                  : "bg-white border-neutral-200 text-neutral-600 hover:text-black hover:border-neutral-350"
-              }`}
-              title="Back to Workspace"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </Link>
-            <div>
+        <header className="flex flex-col gap-4">
+          <Link
+            to="/resourcehub"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
               <p
                 className={`${t.eyebrow} text-xs font-black uppercase tracking-widest`}
               >

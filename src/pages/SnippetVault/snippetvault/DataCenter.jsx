@@ -144,7 +144,7 @@ const DataCenter = () => {
 
       {/* MAIN GLASS CARD — fix 2: backdrop-blur-xl + translucent bg */}
       <div
-        className={`relative z-10 w-[85%] max-w-none rounded-[32px] border shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-300 ${
+        className={`relative z-10 w-full max-w-4xl mx-4 sm:mx-6 md:mx-auto rounded-[32px] border shadow-2xl overflow-hidden backdrop-blur-xl transition-all duration-300 ${
           dark
             ? "bg-zinc-900/80 border-zinc-800"
             : "bg-white/80 border-neutral-200"
@@ -154,7 +154,17 @@ const DataCenter = () => {
         <div className={`h-2 w-full ${dark ? "bg-white" : "bg-black"}`} />
 
         {/* HEADER */}
-        <div className="flex items-start justify-between px-5 sm:px-8 pt-6 sm:pt-8 gap-4">
+        <div className="flex flex-col gap-4 px-5 sm:px-8 pt-6 sm:pt-8">
+          <Link
+            to="/snippetvault"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
           <div>
             <h1
               className={`text-2xl sm:text-4xl font-black uppercase tracking-tight ${
@@ -349,19 +359,7 @@ const DataCenter = () => {
         </div>
 
         {/* FOOTER NAV */}
-        <div className="px-5 sm:px-8 pb-8 flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-neutral-100 dark:border-zinc-800 pt-6">
-          <Link
-            to="/snippetvault"
-            className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-              dark
-                ? "text-neutral-400 hover:text-white"
-                : "text-neutral-500 hover:text-black"
-            }`}
-          >
-            <span>←</span>
-            <span>Back to Workspace</span>
-          </Link>
-
+        <div className="px-5 sm:px-8 pb-8 flex flex-col sm:flex-row gap-4 justify-end items-center border-t border-neutral-100 dark:border-zinc-800 pt-6">
           <div className="flex gap-4">
             <Link
               to="/snippetvault/list"

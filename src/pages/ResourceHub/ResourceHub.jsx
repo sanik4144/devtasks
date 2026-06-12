@@ -138,15 +138,27 @@ const ResourceHub = () => {
         content="Quickly manage bookmarks, API endpoints, design mockups, and documentation assets."
       />
 
-      <div className="w-[85%] max-w-none mx-auto flex flex-col h-full">
-        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-          <div>
-            <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
-              Resource Hub
-            </h1>
-            <p className="text-gray-400 font-medium mb-6">
-              Organize project bookmarks, mockups, and documentations
-            </p>
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col h-full">
+        <header className="shrink-0 mb-12 flex flex-col gap-4">
+          <Link
+            to="/dashboard"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Dashboard</span>
+          </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 w-full">
+            <div>
+              <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
+                Resource Hub
+              </h1>
+              <p className="text-gray-400 font-medium mb-6 md:mb-0">
+                Organize project bookmarks, mockups, and documentations
+              </p>
+            </div>
 
             <div className="w-full max-w-sm">
               <div className="text-xs font-black uppercase tracking-widest mb-2">
@@ -156,15 +168,6 @@ const ResourceHub = () => {
                 {categoryBreakdown}
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/dashboard"
-              className="text-xs font-bold uppercase tracking-widest hover:underline pb-1"
-            >
-              Back to Dashboard
-            </Link>
           </div>
         </header>
 

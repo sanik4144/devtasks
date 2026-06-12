@@ -134,13 +134,23 @@ const DataCenter = () => {
 
       {/* MODERN GLASS CARD CONTAINER */}
       <div
-        className={`relative z-10 w-[85%] max-w-none rounded-[32px] border shadow-2xl overflow-hidden transition-all duration-300 ${
+        className={`relative z-10 w-full max-w-4xl mx-4 sm:mx-6 md:mx-auto rounded-[32px] border shadow-2xl overflow-hidden transition-all duration-300 ${
           dark ? "bg-zinc-900 border-zinc-800" : "bg-white border-neutral-200"
         }`}
       >
         <div className={`h-2 w-full ${dark ? "bg-white" : "bg-black"}`} />
 
-        <div className="flex items-start justify-between px-5 sm:px-8 pt-6 sm:pt-8 gap-4">
+        <div className="flex flex-col gap-4 px-5 sm:px-8 pt-6 sm:pt-8">
+          <Link
+            to="/taskmanage"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
           <div>
             <h1
               className={`text-2xl sm:text-4xl font-black uppercase tracking-tight ${
@@ -154,7 +164,6 @@ const DataCenter = () => {
               Backup & restore your task roadmaps
             </p>
           </div>
-
         </div>
 
         {/* WORKSPACE STATS SUMMARY SECTION */}
@@ -269,19 +278,7 @@ const DataCenter = () => {
         </div>
 
         {/* FOOTER & NAV NAVIGATION */}
-        <div className="px-5 sm:px-8 pb-8 flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-neutral-100 dark:border-zinc-800 pt-6 mt-4">
-          <Link
-            to="/taskmanage"
-            className={`inline-flex items-center gap-2 text-xs sm:text-sm font-black uppercase tracking-widest transition-all duration-300 ${
-              dark
-                ? "text-neutral-400 hover:text-white"
-                : "text-neutral-500 hover:text-black"
-            }`}
-          >
-            <span>←</span>
-            <span>Back to Workspace</span>
-          </Link>
-
+        <div className="px-5 sm:px-8 pb-8 flex flex-col sm:flex-row gap-4 justify-end items-center border-t border-neutral-100 dark:border-zinc-800 pt-6 mt-4">
           <div className="flex gap-4">
             <Link
               to="/taskmanage/list-tasks"

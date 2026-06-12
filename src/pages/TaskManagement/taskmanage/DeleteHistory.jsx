@@ -173,26 +173,28 @@ const DeleteHistory = () => {
         content="devtasks, delete-history, clear system cache, restore tasks, bug purge"
       />
 
-      <div className="w-[85%] max-w-none mx-auto flex flex-col h-full">
+      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col h-full">
         {/* Header */}
-        {/* CORRECTION 2 : flex-col sur mobile pour éviter la compression des éléments */}
-        <header className="shrink-0 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <div className="animate-in fade-in slide-in-from-left duration-700">
-            <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
-              System Logs
-            </h1>
-            <p className="text-gray-400 font-medium">
-              Clear history and reset environment
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/taskmanage"
-              className="text-xs font-bold uppercase tracking-widest hover:underline pb-1 flex items-center"
-            >
-              <span className="mr-2">←</span> Back to Workspace
-            </Link>
+        <header className="shrink-0 mb-12 flex flex-col gap-4">
+          <Link
+            to="/taskmanage"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 w-full">
+            <div className="animate-in fade-in slide-in-from-left duration-700">
+              <h1 className="text-4xl font-black uppercase tracking-tighter mb-2">
+                System Logs
+              </h1>
+              <p className="text-gray-400 font-medium">
+                Clear history and reset environment
+              </p>
+            </div>
           </div>
         </header>
 

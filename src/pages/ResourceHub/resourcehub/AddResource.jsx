@@ -177,7 +177,7 @@ const AddResource = () => {
 
   return (
     <div
-      className={`h-[calc(100vh-76px)] px-4 sm:px-6 py-6 transition-colors duration-300 overflow-hidden relative flex flex-col justify-center ${
+      className={`min-h-[calc(100vh-76px)] w-full px-4 sm:px-6 py-8 transition-colors duration-300 overflow-hidden relative flex flex-col justify-start ${
         dark ? "bg-zinc-950" : "bg-[#F7F7F7]"
       }`}
     >
@@ -196,41 +196,20 @@ const AddResource = () => {
       />
 
       <div
-        className={`relative z-10 w-[85%] max-w-none mx-auto rounded-[32px] border shadow-xl flex flex-col max-h-full overflow-hidden transition-all duration-300 ${
-          dark ? "bg-zinc-900 border-zinc-800" : "bg-white border-neutral-200"
-        }`}
+        className="relative z-10 w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col gap-6"
       >
-        <div
-          className={`h-2 w-full transition-colors duration-500 ${
-            dark ? "bg-white" : "bg-black"
-          }`}
-        />
-
-        <div className="px-5 sm:px-8 pt-6 sm:pt-8 flex items-start justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Link
-              to="/resourcehub"
-              className={`p-2.5 rounded-xl border transition-all duration-200 active:scale-95 flex items-center justify-center shrink-0 ${
-                dark
-                  ? "bg-zinc-800/80 border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-600"
-                  : "bg-white border-neutral-200 text-neutral-600 hover:text-black hover:border-neutral-350"
-              }`}
-              title="Back to Workspace"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </Link>
+        <div className="flex flex-col gap-4">
+          <Link
+            to="/resourcehub"
+            className={`inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-all duration-300 w-fit ${
+              dark
+                ? "text-neutral-400 hover:text-white"
+                : "text-neutral-500 hover:text-black"
+            }`}
+          >
+            <span>← Back to Workspace</span>
+          </Link>
+          <div className="flex items-start justify-between gap-4">
             <div>
               <h1
                 className={`text-xl sm:text-2xl font-black uppercase tracking-tight transition-colors duration-300 ${
@@ -246,7 +225,7 @@ const AddResource = () => {
           </div>
         </div>
 
-        <div className="p-5 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 overflow-y-auto flex-1 min-h-0">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 pb-8">
           <form onSubmit={handleSubmit} className="space-y-4 flex flex-col justify-between lg:col-span-7">
             <div className="space-y-4">
               <div className="group flex flex-col space-y-2">
@@ -457,7 +436,7 @@ const AddResource = () => {
             </div>
           </form>
 
-          <div className="flex flex-col justify-start lg:col-span-5">
+          <div className="hidden lg:flex flex-col justify-start lg:col-span-5">
             <div className="flex flex-col h-full">
               <span
                 className={`text-xs font-black uppercase tracking-widest mb-2 transition-colors ${
@@ -517,7 +496,7 @@ const AddResource = () => {
                       Url
                     </label>
                     <div
-                      className={`p-3 rounded-xl border font-mono text-xs overflow-x-auto max-h-[56px] transition-all duration-300 select-all ${
+                      className={`p-3 rounded-xl border font-mono text-xs transition-all duration-300 select-all ${
                         dark
                           ? "bg-zinc-900 border-zinc-800 text-zinc-300"
                           : "bg-white border-neutral-200 text-neutral-600"
@@ -525,10 +504,10 @@ const AddResource = () => {
                     >
                       {resource.url.trim() ? (
                         <pre className="whitespace-pre-wrap break-all font-semibold text-[11px]">{resource.url}</pre>
-                    ) : (
-                      <span className="text-neutral-400 italic font-sans">
-                        // resource url preview will appear here...
-                      </span>
+                      ) : (
+                        <span className="text-neutral-400 italic font-sans">
+                          // resource url preview will appear here...
+                        </span>
                       )}
                     </div>
                   </div>
@@ -545,7 +524,7 @@ const AddResource = () => {
                       Description
                     </label>
                     <div
-                      className={`p-3 rounded-xl border font-mono text-xs overflow-x-auto max-h-[90px] transition-all duration-300 select-all ${
+                      className={`p-3 rounded-xl border font-mono text-xs transition-all duration-300 select-all ${
                         dark
                           ? "bg-zinc-900 border-zinc-800 text-zinc-300"
                           : "bg-white border-neutral-200 text-neutral-600"
@@ -553,10 +532,10 @@ const AddResource = () => {
                     >
                       {resource.description.trim() ? (
                         <pre className="whitespace-pre-wrap break-all font-semibold">{resource.description}</pre>
-                    ) : (
-                      <span className="text-neutral-400 italic font-sans">
-                        // description preview will appear here...
-                      </span>
+                      ) : (
+                        <span className="text-neutral-400 italic font-sans">
+                          // description preview will appear here...
+                        </span>
                       )}
                     </div>
                   </div>
