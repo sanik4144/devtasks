@@ -33,6 +33,19 @@ const JsonFormatter = () => {
     setOutput("");
   };
 
+  const handleSample = () => {
+    const sampleJson = {
+      name: "John Doe",
+      role: "Frontend Developer",
+      skills: ["React", "Next.js", "TypeScript"],
+      experience: 3,
+      active: true,
+    };
+
+    setInput(JSON.stringify(sampleJson));
+    setOutput("");
+  };
+
   const handleCopy = async () => {
     try {
       if (!output) return;
@@ -104,17 +117,31 @@ const JsonFormatter = () => {
         </div>
 
         <div className="w-full md:h-[464px] p-5 sm:p-8 overflow-y-auto">
-          <div className="w-full h-full flex flex-col md:flex-row gap-4"> 
+          <div className="w-full h-full flex flex-col md:flex-row gap-4">
             <div className="group w-full flex flex-col space-y-2">
-              <label
-                className={`text-xs font-black uppercase tracking-widest transition-colors duration-300 ${
-                  dark
-                    ? "text-zinc-400 group-focus-within:text-white"
-                    : "text-neutral-500 group-focus-within:text-black"
-                }`}
-              >
-                Input
-              </label>
+              <div className="flex items-center justify-between">
+                <label
+                  className={`text-xs font-black uppercase tracking-widest transition-colors duration-300 ${
+                    dark
+                      ? "text-zinc-400 group-focus-within:text-white"
+                      : "text-neutral-500 group-focus-within:text-black"
+                  }`}
+                >
+                  Input
+                </label>
+
+                <button
+                  type="button"
+                  onClick={handleSample}
+                  className={`text-xs font-medium transition-colors duration-300 ${
+                    dark
+                      ? "text-blue-500 hover:text-blue-400"
+                      : "text-blue-600 hover:text-blue-700"
+                  }`}
+                >
+                  Sample
+                </button>
+              </div>
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -125,7 +152,7 @@ const JsonFormatter = () => {
                     : "bg-neutral-50 border-neutral-300 text-black placeholder-neutral-400 focus:border-black focus:ring-1 focus:ring-black"
                 }`}
               />
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {buttons.map((btn) => (
                   <button
                     key={btn.label}
@@ -167,10 +194,11 @@ const JsonFormatter = () => {
                   onClick={handleCopy}
                   type="button"
                   className={`w-40 px-4 py-2 rounded-xl border font-bold text-sm text-center transition-all duration-300 active:scale-95
-                    ${dark
-                      ? "border-white text-white hover:bg-white hover:text-black"
-                      : "border-black text-black hover:bg-black hover:text-white"
-                  }`}
+                    ${
+                      dark
+                        ? "border-white text-white hover:bg-white hover:text-black"
+                        : "border-black text-black hover:bg-black hover:text-white"
+                    }`}
                 >
                   Copy
                 </button>
@@ -178,8 +206,6 @@ const JsonFormatter = () => {
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
   );
