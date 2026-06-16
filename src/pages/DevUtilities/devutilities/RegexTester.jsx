@@ -155,7 +155,7 @@ support@company.org`);
         dark ? "bg-zinc-950" : "bg-[#F7F7F7]"
       }`}
     >
-      <title>Regex Tester — Dev Utilities</title>
+      <title>Regex Tester — DevTasks</title>
       <meta
         name="description"
         content="Test and validate regular expressions against a test string with configurable flags."
