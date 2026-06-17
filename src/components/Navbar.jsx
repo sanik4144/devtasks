@@ -4,11 +4,13 @@ import ThemeToggle from "./ThemeToggle";
 import StorageGauge from "./StorageGauge";
 import useSidebar from "../hooks/useSidebar";
 import useMobileMode from "../hooks/useMobileMode";
+import useSidebarSection from "../hooks/useSidebarSection";
 
 const Navbar = () => {
   const { dark } = useTheme();
   const { setIsSidebarOpen } = useSidebar();
   const isMobileMode = useMobileMode();
+  const { hasSidebarSection } = useSidebarSection();
 
   const navItems = [
     { name: "Tasks", path: "/taskmanage" },
@@ -43,7 +45,7 @@ const Navbar = () => {
             </Link>
 
             {/* Mobile actions */}
-            {isMobileMode && (
+            {hasSidebarSection && isMobileMode && (
               <div className="flex items-center gap-2">
                 <ThemeToggle />
                 <button
