@@ -120,7 +120,7 @@ DevTasks is fully operational to boost developer workflow speed. Here is the cur
   * A secure local snippet registry with sub-pages for creating, editing, search filtering, auditing deleted history, and JSON data backup/restores.
 * 🔗 **Resource Hub (`/resourcehub`)** — *[COMPLETED]* ✅
   * A consolidated bookmarks manager for engineering reference links, design specs, APIs, and docs with category groupings and full backup utilities.
-* 🛠️ **Dev Utilities Sandbox (`/devutilities`)** — *[COMPLETED]* ✅
+* 🛠️ **Dev Utilities Sandbox (`/devutilities`)** — *[IN PROGRESS]* 🏗️
   * A rich offline sandbox of developer utilities featuring a Regex Tester, JSON Formatter, Base64 & URL Encoder/Decoder, Timestamp Converter, UUID Generator, JWT Decoder, Diff Checker, Hash Generator, Color Converter, Code Sandbox, and QR Code Generator.
 
 ---
