@@ -48,6 +48,7 @@ import HashGenerator from "./pages/DevUtilities/devutilities/HashGenerator";
 import ColorConverter from "./pages/DevUtilities/devutilities/ColorConverter";
 import QrCodeGenerator from "./pages/DevUtilities/devutilities/QrCodeGenerator";
 import UrlParserBuilder from "./pages/DevUtilities/devutilities/UrlParserBuilder";
+import SubnetCalculator from "./pages/DevUtilities/devutilities/SubnetCalculator";
 import SqlFormatter from "./pages/DevUtilities/devutilities/SqlFormatter";
 import JwtEncoder from "./pages/DevUtilities/devutilities/JwtEncoder";
 import CssGradientGenerator from "./pages/DevUtilities/devutilities/CssGradientGenerator";
@@ -294,6 +295,7 @@ function AppInner({ toggleHUD, hudVisible }) {
             <Route path="/devutilities/cron" element={<CronExpression />} />
             <Route path="/devutilities/string-inspector" element={<StringInspector />} />
             <Route path="/devutilities/number-base-converter" element={<NumberBaseConverter />} />
+            <Route path="/devutilities/subnet" element={<SubnetCalculator />} />
 
             <Route
               path="/devutilities/css-gradient"

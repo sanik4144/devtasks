@@ -38,6 +38,7 @@ const Dashboard = () => {
           if (t.includes("COLOR")) return "COLOR";
           if (t.includes("CODE")) return "CODE";
           if (t.includes("QR")) return "QR";
+          if (t.includes("SUBNET")) return "SUBNET";
           if (t.includes("SQL")) return "SQL";
           if (t.includes("URL")) return "URL";
           if (t.includes("HTML")) return "HTML ENTITY";
