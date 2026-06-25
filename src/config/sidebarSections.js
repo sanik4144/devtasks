@@ -144,7 +144,7 @@ const SIDEBAR_SECTIONS = [
       {
         label: "JSON YAML CSV Converter",
         description: "Convert JSON, YAML and CSV formats",
-        path: "/devutilities/json-yaml-csv",
+        path: "/devutilities/json-csv-yaml",
       },
       {
         label: "JSON Schema Validator",
@@ -293,8 +293,19 @@ const SIDEBAR_SECTIONS = [
         description: "Generate and inspect CRON expressions. Fully offline.",
         path: "/devutilities/cron",
       },
+      {
+        label: "SVG Optimizer",
+        description: "Optimize, clean, and preview SVG code instantly",
+        path: "/devutilities/svg-optimizer",
+      },
+      {
+        label: "Lorem Ipsum Generator",
+        description: "Generate dummy placeholder text offline",
+        path: "/devutilities/lorem-ipsum",
+      },
     ],
   },
 ];
 
 export default SIDEBAR_SECTIONS;
+

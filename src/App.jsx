@@ -250,7 +250,7 @@ function AppInner({ toggleHUD, hudVisible }) {
             <Route path="/devutilities/regex" element={<RegexTester />} />
             <Route path="/devutilities/json" element={<JsonFormatter />} />
             <Route
-              path="/devutilities/json-yaml"
+              path="/devutilities/json-csv-yaml"
               element={<JsonYamlCsvConverter />}
             />
             <Route

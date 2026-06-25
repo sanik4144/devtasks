@@ -114,10 +114,10 @@ const DevUtilities = () => {
       ),
     },
     {
-      title: "JSON YAML Converter",
+      title: "JSON CSV YAML Converter",
       description:
-        "Convert JSON to YAML and YAML to JSON in real time with syntax validation.",
-      path: "/devutilities/json-yaml",
+        "Convert JSON to CSV and CSV to YAML in real time with syntax validation.",
+      path: "/devutilities/json-csv-yaml",
       icon: (
         <svg
           className="w-6 h-6"

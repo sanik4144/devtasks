@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../../../context/ThemeContext';
 
 const LOREM_WORDS = [
@@ -101,84 +102,119 @@ export default function LoremIpsumGenerator() {
   const charCount = generatedText.length;
 
   return (
-    <div className={`p-6 md:p-8 max-w-5xl mx-auto border rounded-3xl transition-all duration-300 ${t.card}`}>
-      <h2 className="text-3xl font-black uppercase tracking-tighter mb-6">Lorem Ipsum Generator</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Output Type</label>
-          <select 
-            value={outputType} 
-            onChange={(e) => setOutputType(e.target.value)} 
-            className={`w-full rounded-xl border py-2.5 px-4 text-xs font-semibold outline-none transition-all duration-300 ${t.input}`}
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* Header */}
+      <div className="flex items-center gap-3.5 mb-8">
+        <Link
+          to="/devutilities"
+          className={`p-2.5 rounded-xl border transition-all duration-200 active:scale-95 flex items-center justify-center shrink-0 ${
+            dark
+              ? "bg-zinc-900/50 border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700"
+              : "bg-white border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:border-zinc-350"
+          }`}
+          title="Back to Workspace"
+        >
+          <svg
+            className="w-4.5 h-4.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <option value="paragraphs" className={dark ? "bg-zinc-900" : "bg-white"}>Paragraphs</option>
-            <option value="sentences" className={dark ? "bg-zinc-900" : "bg-white"}>Sentences</option>
-            <option value="words" className={dark ? "bg-zinc-900" : "bg-white"}>Words</option>
-          </select>
-        </div>
-
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2.5}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </Link>
         <div>
-          <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Count (1-50)</label>
-          <input 
-            type="number" 
-            min="1" 
-            max="50" 
-            value={count} 
-            onChange={(e) => setCount(Math.max(1, Math.min(50, Number(e.target.value))))} 
-            className={`w-full rounded-xl border py-2.5 px-4 text-xs font-semibold outline-none transition-all duration-300 ${t.input}`} 
-          />
-        </div>
-
-        <div>
-          <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Format</label>
-          <div className="flex gap-2">
-            {['plain', 'html', 'markdown'].map((f) => (
-              <button 
-                key={f} 
-                onClick={() => setFormat(f)} 
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border rounded-xl transition-all duration-300 ${format === f ? t.btnActive : t.btnInactive}`}
-              >
-                {f}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex items-center md:pt-6">
-          <input 
-            type="checkbox" 
-            id="classic" 
-            checked={startWithClassic} 
-            onChange={(e) => setStartWithClassic(e.target.checked)} 
-            className="w-4 h-4 rounded border-zinc-300 text-black focus:ring-0 accent-zinc-900 dark:accent-white mr-3 cursor-pointer" 
-          />
-          <label htmlFor="classic" className="text-xs font-bold uppercase tracking-widest text-zinc-400 select-none cursor-pointer">
-            Start with 'Lorem ipsum...'
-          </label>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Lorem Ipsum Generator
+          </h1>
+          <p className="mt-1 text-xs text-zinc-400">
+            Generate dummy placeholder text offline in paragraphs, sentences, or words.
+          </p>
         </div>
       </div>
 
-      <div className={`relative border rounded-2xl p-5 ${t.preview}`}>
-        <div className="flex justify-between items-center mb-4 pb-3 border-b border-zinc-200/40 dark:border-zinc-800/40">
-          <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 space-x-4">
-            <span>Words: <strong className={dark ? "text-white" : "text-black"}>{wordCount}</strong></span>
-            <span>Characters: <strong className={dark ? "text-white" : "text-black"}>{charCount}</strong></span>
+      <div className={`p-6 md:p-8 border rounded-3xl transition-all duration-300 ${t.card}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Output Type</label>
+            <select 
+              value={outputType} 
+              onChange={(e) => setOutputType(e.target.value)} 
+              className={`w-full rounded-xl border py-2.5 px-4 text-xs font-semibold outline-none transition-all duration-300 ${t.input}`}
+            >
+              <option value="paragraphs" className={dark ? "bg-zinc-900" : "bg-white"}>Paragraphs</option>
+              <option value="sentences" className={dark ? "bg-zinc-900" : "bg-white"}>Sentences</option>
+              <option value="words" className={dark ? "bg-zinc-900" : "bg-white"}>Words</option>
+            </select>
           </div>
-          <button 
-            onClick={handleCopy} 
-            className={`px-4 py-1.5 text-xs font-bold border rounded-xl transition-all duration-300 ${
-              dark 
-                ? "border-zinc-800 bg-zinc-950/70 text-zinc-400 hover:border-zinc-600 hover:text-white" 
-                : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 hover:text-black"
-            }`}
-          >
-            {copied ? '✅ Copied!' : '📋 Copy Text'}
-          </button>
+
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Count (1-50)</label>
+            <input 
+              type="number" 
+              min="1" 
+              max="50" 
+              value={count} 
+              onChange={(e) => setCount(Math.max(1, Math.min(50, Number(e.target.value))))} 
+              className={`w-full rounded-xl border py-2.5 px-4 text-xs font-semibold outline-none transition-all duration-300 ${t.input}`} 
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-zinc-400 mb-2">Format</label>
+            <div className="flex gap-2">
+              {['plain', 'html', 'markdown'].map((f) => (
+                <button 
+                  key={f} 
+                  onClick={() => setFormat(f)} 
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider border rounded-xl transition-all duration-300 ${format === f ? t.btnActive : t.btnInactive}`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center md:pt-6">
+            <input 
+              type="checkbox" 
+              id="classic" 
+              checked={startWithClassic} 
+              onChange={(e) => setStartWithClassic(e.target.checked)} 
+              className="w-4 h-4 rounded border-zinc-300 text-black focus:ring-0 accent-zinc-900 dark:accent-white mr-3 cursor-pointer" 
+            />
+            <label htmlFor="classic" className="text-xs font-bold uppercase tracking-widest text-zinc-400 select-none cursor-pointer">
+              Start with 'Lorem ipsum...'
+            </label>
+          </div>
         </div>
-        <pre className="whitespace-pre-wrap font-mono text-sm max-h-80 overflow-y-auto leading-relaxed outline-none">
-          {generatedText}
-        </pre>
+
+        <div className={`relative border rounded-2xl p-5 ${t.preview}`}>
+          <div className="flex justify-between items-center mb-4 pb-3 border-b border-zinc-200/40 dark:border-zinc-800/40">
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 space-x-4">
+              <span>Words: <strong className={dark ? "text-white" : "text-black"}>{wordCount}</strong></span>
+              <span>Characters: <strong className={dark ? "text-white" : "text-black"}>{charCount}</strong></span>
+            </div>
+            <button 
+              onClick={handleCopy} 
+              className={`px-4 py-1.5 text-xs font-bold border rounded-xl transition-all duration-300 ${
+                dark 
+                  ? "border-zinc-800 bg-zinc-950/70 text-zinc-400 hover:border-zinc-600 hover:text-white" 
+                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-400 hover:text-black"
+              }`}
+            >
+              {copied ? '✅ Copied!' : '📋 Copy Text'}
+            </button>
+          </div>
+          <pre className="whitespace-pre-wrap font-mono text-sm max-h-80 overflow-y-auto leading-relaxed outline-none">
+            {generatedText}
+          </pre>
+        </div>
       </div>
     </div>
   );
