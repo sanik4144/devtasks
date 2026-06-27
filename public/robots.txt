@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Host & Sitemap Location
-Sitemap: https://devtasks.example.com/sitemap.xml
+Sitemap: https://dev-tasks-beta.vercel.app/sitemap.xml
