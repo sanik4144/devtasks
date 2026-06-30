@@ -153,36 +153,78 @@ export default function KeycodeInspector() {
           Keyboard Layout
         </h2>
 
-        <div className="grid grid-cols-10 gap-2">
-          {[
-            "Escape","1","2","3","4","5","6","7","8","9",
-            "0","Backspace",
-            "Tab","Q","W","E","R","T","Y","U","I","O","P",
-            "CapsLock","A","S","D","F","G","H","J","K","L",
-            "Shift","Z","X","C","V","B","N","M",
-            "Ctrl","Alt","Space","Meta","Enter"
-          ].map((key) => {
-            const active =
-              eventData.key.toLowerCase() === key.toLowerCase() ||
-              eventData.code.toLowerCase() === key.toLowerCase();
+     <div className="grid grid-cols-10 gap-2">
+  {[
+    { label: "Esc", code: "Escape" },
+    { label: "1", code: "Digit1" },
+    { label: "2", code: "Digit2" },
+    { label: "3", code: "Digit3" },
+    { label: "4", code: "Digit4" },
+    { label: "5", code: "Digit5" },
+    { label: "6", code: "Digit6" },
+    { label: "7", code: "Digit7" },
+    { label: "8", code: "Digit8" },
+    { label: "9", code: "Digit9" },
+    { label: "0", code: "Digit0" },
+    { label: "⌫", code: "Backspace" },
 
-            return (
-              <div
-                key={key}
-                className={`rounded-lg border px-3 py-3 text-center text-sm font-medium transition-all ${
-                  active
-                    ? "bg-blue-500 text-white border-blue-500"
-                    : dark
-                    ? "bg-zinc-900 border-zinc-700"
-                    : "bg-white border-zinc-300"
-                }`}
-              >
-                {key}
-              </div>
-            );
-          })}
-        </div>
+    { label: "Tab", code: "Tab" },
+    { label: "Q", code: "KeyQ" },
+    { label: "W", code: "KeyW" },
+    { label: "E", code: "KeyE" },
+    { label: "R", code: "KeyR" },
+    { label: "T", code: "KeyT" },
+    { label: "Y", code: "KeyY" },
+    { label: "U", code: "KeyU" },
+    { label: "I", code: "KeyI" },
+    { label: "O", code: "KeyO" },
+    { label: "P", code: "KeyP" },
+
+    { label: "Caps", code: "CapsLock" },
+    { label: "A", code: "KeyA" },
+    { label: "S", code: "KeyS" },
+    { label: "D", code: "KeyD" },
+    { label: "F", code: "KeyF" },
+    { label: "G", code: "KeyG" },
+    { label: "H", code: "KeyH" },
+    { label: "J", code: "KeyJ" },
+    { label: "K", code: "KeyK" },
+    { label: "L", code: "KeyL" },
+
+    { label: "Shift", code: "ShiftLeft" },
+    { label: "Z", code: "KeyZ" },
+    { label: "X", code: "KeyX" },
+    { label: "C", code: "KeyC" },
+    { label: "V", code: "KeyV" },
+    { label: "B", code: "KeyB" },
+    { label: "N", code: "KeyN" },
+    { label: "M", code: "KeyM" },
+
+    { label: "Ctrl", code: "ControlLeft" },
+    { label: "Alt", code: "AltLeft" },
+    { label: "Space", code: "Space" },
+    { label: "Meta", code: "MetaLeft" },
+    { label: "Enter", code: "Enter" },
+  ].map((key) => {
+    const active = eventData.code === key.code;
+
+    return (
+      <div
+        key={key.code}
+        className={`rounded-lg border px-3 py-3 text-center text-sm font-medium transition-all ${
+          active
+            ? "bg-blue-500 text-white border-blue-500 scale-105"
+            : dark
+            ? "bg-zinc-900 border-zinc-700"
+            : "bg-white border-zinc-300"
+        }`}
+      >
+        {key.label}
       </div>
+    );
+  })}
+</div>
+</div>
 
       <div className="mt-10">
         <h2 className="text-2xl font-bold mb-4">
@@ -229,5 +271,6 @@ export default function KeycodeInspector() {
         </div>
       </div>
     </div>
+    
   );
 }
